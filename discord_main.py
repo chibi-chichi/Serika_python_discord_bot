@@ -18,7 +18,7 @@ class MyClient(discord.Client):
             return
 
         if message.content == '안녕':
-            await message.channel.send("안녕하세요!!")
+            await message.channel.send("안녕하세요!")
 
 logging.basicConfig(level=logging.INFO)
 client = MyClient()
