@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import logging
-
+import army_date_calculate as army
 TOKEN = process.env.TOKEN
 
 bot = commands.Bot(command_prefix='-')
