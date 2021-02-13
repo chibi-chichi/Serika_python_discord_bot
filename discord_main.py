@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import logging
 
-TOKEN = "NzAxNzk1NTMzOTkxMTgyMzkw.Xp2sBg.t5pM0yybYfPcbkVxnH6bVc9dC6g"
+TOKEN = "NzAxNzk1NTMzOTkxMTgyMzkw.Xp2sBg.Wj6-6IKqmKiWwNRiaX1plDMV4T8"
 
 bot = commands.Bot(command_prefix='-')
 
