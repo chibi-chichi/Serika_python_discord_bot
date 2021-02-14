@@ -6,7 +6,7 @@ import army_date_calculate as army
 
 TOKEN = os.environ["TOKEN"]
 
-bot = commands.Bot(command_prefix='-', intents=intents)
+bot = commands.Bot(command_prefix='-')
 class MyClient(discord.Client):
     async def on_ready(self):
         print('{0}준비 완료!'.format(self.user))
