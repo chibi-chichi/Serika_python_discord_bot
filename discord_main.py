@@ -22,7 +22,7 @@ async def army_date(ctx):
     if ctx.content == '전역일':
         print(army.remain_days())
         print(army.remain_days_percent())
-        await ctx.channel.send("치비님의 남은 전역일 수는" + army.remain_days() + "일이며 현재" + army.remain_days_percent() + "%만큼 했습니다!")
+        await ctx.channel.send("치비님의 남은 전역일 수는", army.remain_days(), "일이며 현재", army.remain_days_percent(), "%만큼 했습니다!")
 
 logging.basicConfig(level=logging.INFO)
 client = MyClient()
