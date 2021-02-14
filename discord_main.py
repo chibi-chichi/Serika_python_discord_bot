@@ -1,8 +1,10 @@
+import os
 import discord
-from discord.ext import commands
 import logging
+from discord.ext import commands
 import army_date_calculate as army
-TOKEN = process.env.TOKEN
+
+TOKEN = os.environ["TOKEN"]
 
 bot = commands.Bot(command_prefix='-')
 class MyClient(discord.Client):
