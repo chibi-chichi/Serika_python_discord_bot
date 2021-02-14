@@ -20,7 +20,7 @@ class MyClient(discord.Client):
             return
 
         if message.content.startswith('안녕'):
-            await message.reply('안녕하세요!', mention_author=True)
+            await message.reply('안녕하세요!!', mention_author=True)
 
         if message.content.startswith('전역'):
             date = army.remain_days()
