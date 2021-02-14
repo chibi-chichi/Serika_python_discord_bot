@@ -21,8 +21,11 @@ class MyClient(discord.Client):
 
         if message.content.startswith('안녕'):
             await message.reply('안녕하세요!!', mention_author=True)
-
-        if message.content.startswith('전역'):
+            
+        if message.content.startswith('수정'):
+            await message.reply('고쳐졌어요!!', mention_author=True)
+        
+        if message.content.startswith('복무일'):
             date = army.remain_days()
             date_percent = army.remain_days_percent()
             await message.reply("치비님의 남은 복무일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했습니다!")
