@@ -3,6 +3,7 @@ import discord
 import logging
 from discord.ext import commands
 import army_date_calculate as army
+import lotto_numbers as lotto
 
 TOKEN = os.environ["TOKEN"]
 
@@ -29,6 +30,10 @@ class MyClient(discord.Client):
             date = army.remain_days()
             date_percent = army.remain_days_percent()
             await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했습니다!")
+        if message.content.startswith('-로또'):
+            number_list = lotto.lotto_number()
+            bonus_number = lotto.bonus_number()
+            await message.channel.send(number_list + "그리고" + bonus_number)
 
 logging.basicConfig(level=logging.INFO)
 client = MyClient()
