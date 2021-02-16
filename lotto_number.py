@@ -26,6 +26,7 @@ def lotto_number():
 lotto_list, bonus_num = lotto_number()
 
 def bonus_number():
+    bonus_num = str(bonus_num)
     return bonus_num
 
 def lotto_number_list():
