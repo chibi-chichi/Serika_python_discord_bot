@@ -34,7 +34,7 @@ class MyClient(discord.Client):
         if message.content.startswith('-로또'):
             number_list = lotto.lotto_number()
             bonus_number = lotto.bonus_number()
-            await message.channel.send(number_list + "그리고" + bonus_number)
+            await message.channel.send("하이")
 
 logging.basicConfig(level=logging.INFO)
 client = MyClient()
