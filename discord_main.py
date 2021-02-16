@@ -32,7 +32,7 @@ class MyClient(discord.Client):
             await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했습니다!")
         
         if message.content.startswith('-로또'):
-            #number_list = lotto.lotto_number()
+            number_list = lotto.lotto_number()
             #bonus_number = lotto.bonus_number()
             await message.channel.send("하이")
 
