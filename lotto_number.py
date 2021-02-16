@@ -28,5 +28,5 @@ lotto_list, bonus_num = lotto_number()
 def bonus_number():
     return bonus_num
 
-def lotto_number():
+def lotto_number_list():
     return lotto_list
