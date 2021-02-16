@@ -1,11 +1,14 @@
 import random
 
-#possible_number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-total_number = 0
 possible_number = []
 picked_list = [0, 0, 0, 0, 0, 0, 0]
-bonus = 0
+bonus_num = 0
+lotto_list = []
+
 def lotto_number():
+    total_number = 0
+    bonus = 0
+    
     while total_number < 45:
         total_number = total_number + 1
         possible_number.append(total_number)
@@ -15,10 +18,15 @@ def lotto_number():
         picked_list[i] = randomNumber
 
     bonus = picked_list[6]
-    del picked_list[5:]
+    del picked_list[6]
     other_number = sorted(picked_list)
-    six_number =' '.join(other_number)
-    return six_number
+    #six_number =' '.join(other_number)
+    return other_number, bonus
+
+lotto_list, bonus_num = lotto_number()
 
 def bonus_number():
-    return bonus
+    return bonus_num
+
+def lotto_number():
+    return lotto_list
