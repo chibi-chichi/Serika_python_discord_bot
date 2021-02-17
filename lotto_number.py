@@ -31,3 +31,6 @@ def bonus_number():
 
 def lotto_number_list():
     return lotto_list
+
+if __name__ == '__main__':
+    main()
