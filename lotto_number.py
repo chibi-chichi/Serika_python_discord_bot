@@ -26,11 +26,14 @@ def lotto_number():
 lotto_list, bonus_num = lotto_number()
 
 def bonus_number():
+    global bonus_num
     bonus_num = str(bonus_num)
     return bonus_num
 
 def lotto_number_list():
-    return lotto_list
+    global lotto_list
+    lotto_num = " ".join(map(str, lotto_list))
+    return lotto_num
 
 if __name__ == '__main__':
     main()
