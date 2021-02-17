@@ -40,7 +40,7 @@ class MyClient(discord.Client):
         if message.content.startswith('-로또'):
             number_list = lotto.lotto_number_list()
             bonus_number = lotto.bonus_number()
-            await message.channel.send(number_list)
+            await message.channel.send("이번 로또 추첨번호는" + number_list + "그리고 보너스 숫자는" + bonus_number + "가 좋을 것 같아요!")
 
 
 #기본적인 정보들을 로그에 출력해줍니다.
