@@ -46,6 +46,13 @@ class MyClient(discord.Client):
             number_list = ", ".join([str(numb) for numb in possible_number_list])
             await message.channel.send("이번 로또 추첨번호는 `" + number_list + "` 가 좋을 것 같아요!")
 
+        if message.content.startswith('-추첨'):
+            # 디스코드 이모지인 숫자들의 리스트
+            possible_numb = [":zero:", ":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", ":keycap_ten:"]
+            # 숫자들의 리스트에서 하나를 뽑아줍니다.
+            picked = random.choice(possible_numb)
+            await message.channel.send("숫자 " + picked + "가 나왔어요!")
+
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
 
