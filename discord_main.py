@@ -3,7 +3,7 @@ import discord
 import logging
 from discord.ext import commands
 import army_date_calculate as army
-import lotto_number as lotto
+import random
 
 TOKEN = os.environ["TOKEN"]
 
