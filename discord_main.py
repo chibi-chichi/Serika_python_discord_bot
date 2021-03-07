@@ -38,10 +38,13 @@ class MyClient(discord.Client):
             await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했습니다!")
       
         if message.content.startswith('-로또'):
-            number_list = lotto.lotto_number_list()
-            bonus_number = lotto.bonus_number()
-            await message.channel.send("이번 로또 추첨번호는 `" + number_list + "` 그리고 보너스 숫자는 `" + bonus_number + "` 가 좋을 것 같아요!")
-
+            # 로또 번호 1~45까지의 숫자를 뽑아줍니다.
+            possible_number_list = random.sample(range(1,45), 6)
+            # 로또 번호를 보기 편하게 숫자 크기 순으로 정렬해줍니다.
+            possible_number_list = sorted(possible_number_list)
+            # 로또 번호를 출력하기 위해 문자열로 바꾸고 출력하기 편하게 바꿔줍니다.
+            number_list = ", ".join([str(numb) for numb in possible_number_list])
+            await message.channel.send("이번 로또 추첨번호는 `" + number_list + "` 가 좋을 것 같아요!")
 
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
