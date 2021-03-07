@@ -66,7 +66,12 @@ class MyClient(discord.Client):
             # 리스트화 된 선택지에서 하나를 골라줍니다.
             choose = random.choice(select_choose)
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
-
+     # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
+        if message.content.startswith('-설명'):
+            await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려줍니다.\n"
+                                       "-로또 : 로또 번호를 6개 선택해줍니다. 로또 번호를 추첨해서 뽑으면 뽑힐 때 기분이 더 좋아지는 효과가 있습니다.\n"
+                                       "-추첨 : 랜덤된 숫자 0~10을 골라줍니다. 보통 누군가 한 명이 일을 몰빵 당할 때나 사용됩니다.\n"
+                                       "-선택 [선택지1, 선택지2, ...] : 선택장애인 사람들을 위해 선택을 하게 해줍니다.```\n가 있어요!")
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
 
