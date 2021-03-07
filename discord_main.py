@@ -65,7 +65,7 @@ class MyClient(discord.Client):
             select_choose = wanted_choice.split()
             # 리스트화 된 선택지에서 하나를 골라줍니다.
             choose = random.choice(select_choose)
-            await message.channel.send(choose + "가 좋을 것 같아요!")
+            await message.channel.send(choose + "(이)가 좋을 것 같아요!")
 
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
