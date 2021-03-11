@@ -1,7 +1,6 @@
 import os
 import discord
 import logging
-from discord.ext import commands
 import army_date_calculate as army
 import random
 
