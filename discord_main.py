@@ -8,7 +8,7 @@ import random
 TOKEN = os.environ["TOKEN"]
 
 client = discord.Client()
-bot = commands.Bot(command_prefix='-')
+
 class MyClient(discord.Client):
     async def on_ready(self):
         #건설로봇 준비완료
