@@ -68,38 +68,38 @@ class MyClient(discord.Client):
             choose = random.choice(select_choose)
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
      # 작업 중   
-        if message.content.startswith('-엑셀'):
-            scope = ['https://spreadsheets.google.com/feeds',
-                     'https://www.googleapis.com/auth/drive']
-            credentials = ServiceAccountCredentials.from_json_keyfile_name(
-                'python-spread-for-discord-bot-6ab7bb1b9b26.json', scope)
-            gc = gspread.authorize(credentials)
-            gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
-            gc2 = gc1.get_all_values()
-            japan_name = gc1.acell('B2').value
-            korean_name = gc1.acell('C2').value
-            difficulty = gc1.acell('E2').value
-            perfect_note = gc1.acell('F2').value
-            great_note = gc1.acell('G2').value
-            good_note = gc1.acell('H2').value
-            fastslow_note = gc1.acell('I2').value
-            miss_note = gc1.acell('J2').value
-            total_note = gc1.acell('K2').value
-            max_combo = gc1.acell('L2').value
-            full_combo = gc1.acell('M2').value
-            best_score = str(gc1.acell('N2').value)
-            await message.reply("> "+ japan_name +  "\n"
-                                       "> " + korean_name +"\n"
-                                       "> \n"
-                                       ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
-                                       "> \n"
-                                       ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
-                                       ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
-                                       "> \n"
-                                       "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
-                                       ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
-                                       "> \n"
-                                       "> **TOTAL SCORE**                    " + best_score + "\n")
+#        if message.content.startswith('-엑셀'):
+#            scope = ['https://spreadsheets.google.com/feeds',
+#                     'https://www.googleapis.com/auth/drive'
+#            credentials = ServiceAccountCredentials.from_json_keyfile_name(#
+#                'python-spread-for-discord-bot-6ab7bb1b9b26.json', scope)
+#            gc = gspread.authorize(credentials)
+#            gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
+#            gc2 = gc1.get_all_values()
+#            japan_name = gc1.acell('B2').value
+#            korean_name = gc1.acell('C2').value
+#            difficulty = gc1.acell('E2').value
+#            perfect_note = gc1.acell('F2').value
+#            great_note = gc1.acell('G2').value
+#            good_note = gc1.acell('H2').value
+#            fastslow_note = gc1.acell('I2').value
+#            miss_note = gc1.acell('J2').value
+#            total_note = gc1.acell('K2').value
+#            max_combo = gc1.acell('L2').value
+#            full_combo = gc1.acell('M2').value
+#            best_score = str(gc1.acell('N2').value)
+#            await message.reply("> "+ japan_name +  "\n"
+#                                       "> " + korean_name +"\n"
+#                                       "> \n"
+#                                       ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
+#                                       "> \n"
+#                                       ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
+#                                       ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
+#                                       "> \n"
+#                                       "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
+#                                       ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
+#                                       "> \n"
+#                                       "> **TOTAL SCORE**                    " + best_score + "\n")
 
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
