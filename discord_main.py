@@ -3,8 +3,8 @@ import discord
 import logging
 import army_date_calculate as army
 import random
-from oauth2client.service_account import ServiceAccountCredentials
-import gspread
+#from oauth2client.service_account import ServiceAccountCredentials
+#import gspread
 
 TOKEN = os.environ["TOKEN"]
 
