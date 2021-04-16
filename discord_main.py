@@ -69,14 +69,15 @@ class MyClient(discord.Client):
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
         if message.content.startswith('-엑셀'):
             try:
-                scope = ['https://spreadsheets.google.com/feeds',
-                         'https://www.googleapis.com/auth/drive'
+                scopes = ['https://spreadsheets.google.com/feeds']
                 json_creds = os.getenv("GOOGLE_KEYS")
                 creds_dict = json.loads(json_creds)
                 creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
-                credentials = ServiceAccountCredentials.from_json_keyfile_name(creds_dict, scope)
-                gc = gspread.authorize(credentials)
+                creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
+                
+                gc = gspread.authorize(creds)
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
+                
                 gc2 = gc1.get_all_values()
                 japan_name = gc1.acell('B2').value
                 korean_name = gc1.acell('C2').value
