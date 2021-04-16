@@ -105,6 +105,14 @@ class MyClient(discord.Client):
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
             except SyntaxError as err:
                 await message.reply(err)
+            except NameError as err1:
+                await message.reply(err1)
+            except KeyError as err2:
+                await message.reply(err2)
+            except AttributeError as err3:
+                await message.reply(err3)
+            except TypeError as err4:
+                await message.reply(err4)
             except:
                 await message.reply("에러 발생!")
                          
