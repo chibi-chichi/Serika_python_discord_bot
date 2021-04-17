@@ -1,1 +1,3 @@
 discord
+gspread
+oauth2client
