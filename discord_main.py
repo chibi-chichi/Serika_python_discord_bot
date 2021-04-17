@@ -92,7 +92,7 @@ class MyClient(discord.Client):
                 total_note = gc1.acell('K2').value
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
-                best_score = str(gc1.acell('N2').value)
+                best_score = gc1.acell('N2').value
                 await message.reply("> "+ japan_name +  "\n"
                                            "> " + korean_name +"\n"
                                            "> \n"
