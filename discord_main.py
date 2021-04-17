@@ -108,7 +108,6 @@ class MyClient(discord.Client):
                                            ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                            "> \n"
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
-                await message.reply("고쳐졌나봐요")
             except Exception as e:
                 await message.reply(traceback.format_exc())
             
