@@ -84,28 +84,28 @@ class MyClient(discord.Client):
                 gc2 = gc1.get_all_values()
                 japan_name = gc1.acell('B2').value
                 korean_name = gc1.acell('C2').value
-                difficulty = gc1.acell('E2').value
-                perfect_note = gc1.acell('F2').value
-                great_note = gc1.acell('G2').value
-                good_note = gc1.acell('H2').value
-                fastslow_note = gc1.acell('I2').value
-                miss_note = gc1.acell('J2').value
-                total_note = gc1.acell('K2').value
-                max_combo = gc1.acell('L2').value
-                full_combo = gc1.acell('M2').value
-                best_score = str(gc1.acell('N2').value)
+                #difficulty = gc1.acell('E2').value
+                #perfect_note = gc1.acell('F2').value
+                #great_note = gc1.acell('G2').value
+                #good_note = gc1.acell('H2').value
+                #fastslow_note = gc1.acell('I2').value
+                #miss_note = gc1.acell('J2').value
+                #total_note = gc1.acell('K2').value
+                #max_combo = gc1.acell('L2').value
+                #full_combo = gc1.acell('M2').value
+                #best_score = str(gc1.acell('N2').value)
                 await message.reply("> "+ japan_name +  "\n"
                                            "> " + korean_name +"\n"
                                            "> \n"
                                            ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
                                            "> \n"
-                                           ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
+                                           #">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
                                            ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
                                            "> \n"
-                                           "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
+                                           #"> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
                                            ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                            "> \n"
-                                           "> **TOTAL SCORE**                    " + best_score + "\n")
+                                           #"> **TOTAL SCORE**                    " + best_score + "\n")
 
             except SyntaxError as err:
                 await message.reply(err)
