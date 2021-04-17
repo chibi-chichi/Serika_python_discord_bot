@@ -1,10 +1,11 @@
+import json
 import os
 import discord
 import logging
 import army_date_calculate as army
 import random
-#from oauth2client.service_account import ServiceAccountCredentials
-#import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import gspread
 
 TOKEN = os.environ["TOKEN"]
 
@@ -71,7 +72,8 @@ class MyClient(discord.Client):
             try:
                 scopes = ['https://spreadsheets.google.com/feeds']
                 json_creds = os.getenv("GOOGLE_KEYS")
-                creds_dict = json.loads(json_creds)
+                token = json.dumps(str(json_creds))
+                creds_dict = json.loads(token)
                 creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
                 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
                 
