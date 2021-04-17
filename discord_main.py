@@ -109,18 +109,18 @@ class MyClient(discord.Client):
                                            #"> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
                 await message.reply(traceback.format_exc())
-'''            except SyntaxError as err:
-                await message.reply(err)
-            except NameError as err1:
-                await message.reply(err1)
-            except KeyError as err2:
-                await message.reply(err2)
-            except AttributeError as err3:
-                await message.reply(err3)
-            except TypeError as err4:
-                await message.reply(err4)
-            except:
-                await message.reply("에러 발생!")'''
+            #except SyntaxError as err:
+            #    await message.reply(err)
+            #except NameError as err1:
+            #    await message.reply(err1)
+            #except KeyError as err2:
+            #    await message.reply(err2)
+            #except AttributeError as err3:
+            #    await message.reply(err3)
+            #except TypeError as err4:
+            #    await message.reply(err4)
+            #except:
+            #    await message.reply("에러 발생!")
 
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
