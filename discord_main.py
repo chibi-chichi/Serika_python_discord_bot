@@ -69,8 +69,7 @@ class MyClient(discord.Client):
             choose = random.choice(select_choose)
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
         if message.content.startswith('-엑셀'):
-            scope = ['https://spreadsheets.google.com/feeds',
-                     'https://www.googleapis.com/auth/drive']
+            scope = ['https://spreadsheets.google.com/feeds']
             json_creds = os.getenv("GOOGLE_KEYS")
             creds_dict = json.loads(json_creds)
             creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
