@@ -83,8 +83,8 @@ class MyClient(discord.Client):
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
                 
                 gc2 = gc1.get_all_values()
-                japan_name = gc1.acell('B2').value
-                korean_name = gc1.acell('C2').value
+                #japan_name = gc1.acell('B2').value
+                #korean_name = gc1.acell('C2').value
                 #difficulty = gc1.acell('E2').value
                 #perfect_note = gc1.acell('F2').value
                 #great_note = gc1.acell('G2').value
