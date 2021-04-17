@@ -102,6 +102,54 @@ class MyClient(discord.Client):
                                        ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                        "> \n"
                                        "> **TOTAL SCORE**                    " + best_score + "\n")
+            try:
+                scopes = ['https://spreadsheets.google.com/feeds']
+                json_creds = os.getenv("GOOGLE_KEYS")
+                token = json.dumps(str(json_creds))
+                creds_dict = json.loads(token)
+                creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
+                creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
+                
+                gc = gspread.authorize(creds)
+                gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
+                
+                gc2 = gc1.get_all_values()
+                japan_name = gc1.acell('B2').value
+                korean_name = gc1.acell('C2').value
+                difficulty = gc1.acell('E2').value
+                perfect_note = gc1.acell('F2').value
+                great_note = gc1.acell('G2').value
+                good_note = gc1.acell('H2').value
+                fastslow_note = gc1.acell('I2').value
+                miss_note = gc1.acell('J2').value
+                total_note = gc1.acell('K2').value
+                max_combo = gc1.acell('L2').value
+                full_combo = gc1.acell('M2').value
+                best_score = str(gc1.acell('N2').value)
+                await message.reply("> "+ japan_name +  "\n"
+                                           "> " + korean_name +"\n"
+                                           "> \n"
+                                           ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
+                                           "> \n"
+                                           ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
+                                           ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
+                                           "> \n"
+                                           "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
+                                           ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
+                                           "> \n"
+                                           "> **TOTAL SCORE**                    " + best_score + "\n")
+            except SyntaxError as err:
+                await message.reply(err)
+            except NameError as err1:
+                await message.reply(err1)
+            except KeyError as err2:
+                await message.reply(err2)
+            except AttributeError as err3:
+                await message.reply(err3)
+            except TypeError as err4:
+                await message.reply(err4)
+            except:
+                await message.reply("에러 발생!")
 
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
