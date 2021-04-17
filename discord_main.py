@@ -106,7 +106,8 @@ class MyClient(discord.Client):
                                            #"> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
                                            ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                            "> \n"
-                                           #"> **TOTAL SCORE**                    " + best_score + "\n")
+                                           #"> **TOTAL SCORE**                    " + best_score + "\n
+                                    ")
             except Exception as e:
                 await message.reply(traceback.format_exc())
             #except SyntaxError as err:
