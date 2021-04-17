@@ -105,6 +105,7 @@ class MyClient(discord.Client):
                                            ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                            "> \n"
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
+
             except SyntaxError as err:
                 await message.reply(err)
             except NameError as err1:
