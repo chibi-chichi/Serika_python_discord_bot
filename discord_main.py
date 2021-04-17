@@ -6,6 +6,7 @@ import random
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import json
+import traceback
 
 TOKEN = os.environ["TOKEN"]
 
@@ -106,8 +107,9 @@ class MyClient(discord.Client):
                                            ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
                                            "> \n"
                                            #"> **TOTAL SCORE**                    " + best_score + "\n")
-
-            except SyntaxError as err:
+            except Exception as e:
+                await message.reply(traceback.format_exc())
+'''            except SyntaxError as err:
                 await message.reply(err)
             except NameError as err1:
                 await message.reply(err1)
@@ -118,7 +120,7 @@ class MyClient(discord.Client):
             except TypeError as err4:
                 await message.reply(err4)
             except:
-                await message.reply("에러 발생!")
+                await message.reply("에러 발생!")'''
 
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
