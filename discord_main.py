@@ -73,7 +73,8 @@ class MyClient(discord.Client):
     # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
             try:
-                scopes = ['https://spreadsheets.google.com/feeds']
+                scope = ['https://spreadsheets.google.com/feeds',
+                         'https://www.googleapis.com/auth/drive']
                 json_creds = os.getenv("GOOGLE_KEYS")
                 creds_dict = json.loads(json_creds)
                 creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
