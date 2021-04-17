@@ -117,7 +117,7 @@ class MyClient(discord.Client):
                 await message.reply(err4)
             except:
                 await message.reply("에러 발생!")
-                         
+
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려줍니다.\n"
