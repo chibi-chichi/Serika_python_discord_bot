@@ -68,6 +68,8 @@ class MyClient(discord.Client):
             # 리스트화 된 선택지에서 하나를 골라줍니다.
             choose = random.choice(select_choose)
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
+
+    # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
             try:
                 scopes = ['https://spreadsheets.google.com/feeds']
