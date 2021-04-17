@@ -3,8 +3,9 @@ import discord
 import logging
 import army_date_calculate as army
 import random
-#from oauth2client.service_account import ServiceAccountCredentials
-#import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import gspread
+import json
 
 TOKEN = os.environ["TOKEN"]
 
@@ -69,7 +70,7 @@ class MyClient(discord.Client):
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
         if message.content.startswith('-엑셀'):
             scope = ['https://spreadsheets.google.com/feeds',
-                     'https://www.googleapis.com/auth/drive'
+                     'https://www.googleapis.com/auth/drive']
             json_creds = os.getenv("GOOGLE_KEYS")
             creds_dict = json.loads(json_creds)
             creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
