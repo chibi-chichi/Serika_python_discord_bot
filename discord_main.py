@@ -63,7 +63,7 @@ class MyClient(discord.Client):
             # 메세지를 불러옵니다
             choice_msg = message.content
             # .split()을 위해 "-선택" 이라는 단어를 제거합니다.
-            wanted_choice = choice_msg[3:]
+            wanted_choice = choice_msg[4:]
             # 선택지를 나눠 리스트화시킵니다.
             select_choose = wanted_choice.split()
             # 리스트화 된 선택지에서 하나를 골라줍니다.
@@ -72,6 +72,9 @@ class MyClient(discord.Client):
 
     # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
+            called_msg = message.content
+            wanted_msg = called_msg[3:]
+            
             try:
                 scopes = ['https://spreadsheets.google.com/feeds',
                          'https://www.googleapis.com/auth/drive']
