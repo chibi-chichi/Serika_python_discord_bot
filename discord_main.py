@@ -83,6 +83,7 @@ class MyClient(discord.Client):
                 gc = gspread.authorize(creds)
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
                 
+                title = gc1.row_values(1)
                 japan_name = gc1.acell('B2').value
                 korean_name = gc1.acell('C2').value
                 song_type = gc1.acell('D2').value
@@ -103,14 +104,13 @@ class MyClient(discord.Client):
                 embed.add_field(name="난이도", value = difficulty, inline=False)
                 embed.add_field(name="곡 타입", value = song_type, inline=False)
                 embed.add_field(name="부른 사람", value = cv, inline=False)
-                embed.add_field(name="PERFECT", value = perfect_note, inline=False)
-                embed.add_field(name="GREAT", value = great_note, inline=False)
-                embed.add_field(name="GOOD", value = good_note, inline=False)
-                embed.add_field(name="BAD", value = badfastslow_note, inline=False)
+                embed.add_field(name=title[6], value = perfect_note, inline=False)
+                embed.add_field(name=title[7], value = great_note, inline=False)
+                embed.add_field(name=title[8], value = good_note, inline=False)
+                embed.add_field(name=title[9], value = badfastslow_note, inline=False)
                 embed.add_field(name="HIGH SCORE", value = best_score, inline=False)
                 
                 await message.reply(embed=embed)
-                await message.reply(gc1.row_values(1))
 #               await message.reply(#"> "+ japan_name +  "\n"
 #                                           "> " + korean_name +"\n"
 #                                           "> \n"
@@ -124,8 +124,8 @@ class MyClient(discord.Client):
 #                                           "> \n"
 #                                           "> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
+                await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
-                await message.reply(gc2)
                 
             
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
