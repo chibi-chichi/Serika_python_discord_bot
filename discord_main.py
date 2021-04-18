@@ -84,7 +84,7 @@ class MyClient(discord.Client):
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
                 
                 gc2 = gc1.get_all_values()
-                japan_name = gc1.acell('B2').value
+                #japan_name = gc1.acell('B2').value
                 korean_name = gc1.acell('C2').value
                 difficulty = gc1.acell('E2').value
                 perfect_note = gc1.acell('F2').value
@@ -96,7 +96,7 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
                 best_score = str(gc1.acell('N2').value)
-                await message.reply("> "+ japan_name +  "\n"
+                await message.reply(#"> "+ japan_name +  "\n"
                                            "> " + korean_name +"\n"
                                            "> \n"
                                            ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
