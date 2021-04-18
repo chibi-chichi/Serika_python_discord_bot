@@ -98,20 +98,18 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('M2').value
                 full_combo = gc1.acell('N2').value
                 best_score = str(gc1.acell('O2').value)
-                tab_in_discord = " " + " " + " " + " "
                 
                 embed = discord.Embed(title = "베스트 스코어", description = '자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
                 embed.add_field(name="제목", value = japan_name + "\t" + korean_name, inline=False)
                 embed.add_field(name="난이도", value = difficulty, inline=False)
                 embed.add_field(name="곡 타입", value = song_type, inline=False)
                 embed.add_field(name="부른 사람", value = cv, inline=False)
-                embed.add_field(name="판정", value = "**"+title[6] + "**\t" + perfect_note + tab_in_discord + "\n**" + title[7] + "**\t" + great_note + tab_in_discord + "\n**" + title[11] + "**\t\t\t" + total_note + "\n**" + title[12]  + "**\t\t\t" + max_combo + "\n**" + title[13] + "**\t\t\t" + full_combo, inline=False)
+                embed.add_field(name="판정", value = "**"+title[6] + "**\t" + perfect_note + "\n**" + title[7] + "**\t" + great_note + "\n**" + title[11] + "**\t\t\t" + total_note + "\n**" + title[12]  + "**\t\t\t" + max_combo + "\n**" + title[13] + "**\t\t\t" + full_combo, inline=False)
                 #embed.add_field(name=title[6], value = perfect_note, inline=False)
                 #embed.add_field(name=title[7], value = great_note, inline=False)
                 #embed.add_field(name=title[8], value = good_note, inline=False)
                 #embed.add_field(name=title[9], value = badfastslow_note, inline=False)
                 #embed.add_field(name=title[10], value = miss_note, inline=False)
-                embed.add_field(name="COMBO", value = "**" + title[11] + "**\t\t\t" + total_note + "\n**" + title[12]  + "**\t\t\t" + max_combo + "\n**" + title[13] + "**\t\t\t" + full_combo, inline=False)
                 #embed.add_field(name=title[11], value = total_note, inline=False)
                 #embed.add_field(name=title[12], value = max_combo, inline=False)
                 #embed.add_field(name=title[13], value = full_combo, inline=False)
