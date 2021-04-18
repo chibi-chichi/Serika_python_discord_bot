@@ -96,7 +96,11 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
                 best_score = str(gc1.acell('N2').value)
-                await message.reply(korean_name)
+                
+                embed = discord.Embed(title = "베스트 스코어", description = '자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
+                embed.add_field(name="한국어 제목", value = korean_name, inline=False)
+                embed.add_field(name="난이도", value = difficulty, inline=False)
+                await message.reply(embed=embed)
 #               await message.reply(#"> "+ japan_name +  "\n"
 #                                           "> " + korean_name +"\n"
 #                                           "> \n"
