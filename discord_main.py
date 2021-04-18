@@ -72,8 +72,8 @@ class MyClient(discord.Client):
 
     # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
-            called_msg = message.content
-            wanted_msg = called_msg[3:]
+            #called_msg = message.content
+            #wanted_msg = called_msg[3:]
             
             try:
                 scopes = ['https://spreadsheets.google.com/feeds',
