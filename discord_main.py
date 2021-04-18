@@ -86,7 +86,7 @@ class MyClient(discord.Client):
                     gc1.replace("None", " ")
                     
                 gc2 = gc1.get_all_values()
-                japan_name = gc1.acell('B2').value.encode()
+                japan_name = gc1.acell('B2').value.decode()
                 korean_name = gc1.acell('C2').value
                 difficulty = gc1.acell('E2').value
                 perfect_note = gc1.acell('F2').value
