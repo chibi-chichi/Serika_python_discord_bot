@@ -99,7 +99,7 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
                 best_score = str(gc1.acell('N2').value)
-                await message.reply("> " + japan_name + "\n"
+                await message.reply("> " + str(japan_name) + "\n"
                                            "> " + korean_name +"\n"
                                            "> \n"
                                            ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
