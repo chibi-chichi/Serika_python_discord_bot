@@ -82,7 +82,9 @@ class MyClient(discord.Client):
                 
                 gc = gspread.authorize(creds)
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
-                
+                if gc1 == "None":
+                    gc1.replace("None", " ")
+                    
                 gc2 = gc1.get_all_values()
                 japan_name = gc1.acell('B2').value
                 japan_name = japan_name.encode('utf-8')
