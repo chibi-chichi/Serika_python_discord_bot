@@ -100,7 +100,7 @@ class MyClient(discord.Client):
                 best_score = str(gc1.acell('O2').value)
                 
                 embed = discord.Embed(title = "베스트 스코어", description = '자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
-                embed.add_field(name="TITLE", value = japan_name + "\t" + korean_name, inline=False)
+                embed.add_field(name="TITLE", value = "__" +japan_name + "__\t__" + korean_name + "__", inline=False)
                 embed.add_field(name=title[5], value = difficulty, inline=False)
                 embed.add_field(name=title[3], value = song_type, inline=False)
                 embed.add_field(name=title[4], value = cv, inline=False)
