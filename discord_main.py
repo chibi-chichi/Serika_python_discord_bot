@@ -108,6 +108,10 @@ class MyClient(discord.Client):
                 embed.add_field(name=title[7], value = great_note, inline=False)
                 embed.add_field(name=title[8], value = good_note, inline=False)
                 embed.add_field(name=title[9], value = badfastslow_note, inline=False)
+                embed.add_field(name=title[10], value = miss_note, inline=False)
+                embed.add_field(name=title[11], value = total_note, inline=False)
+                embed.add_field(name=title[12], value = max_note, inline=False)
+                embed.add_field(name=title[13], value = full_combo, inline=False)
                 embed.add_field(name="HIGH SCORE", value = best_score, inline=False)
                 
                 await message.reply(embed=embed)
