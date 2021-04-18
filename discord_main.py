@@ -87,7 +87,7 @@ class MyClient(discord.Client):
                     gc1.replace("None", " ")
                     
                 gc2 = gc1.get_all_values()
-                japan_name = gc1.acell('B2').value.encode()
+                japan_name = gc1.acell('B2').value.encode('utf-8')
                 korean_name = gc1.acell('C2').value
                 difficulty = gc1.acell('E2').value
                 perfect_note = gc1.acell('F2').value
@@ -113,7 +113,7 @@ class MyClient(discord.Client):
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
                 await message.reply(traceback.format_exc())
-            
+                await message.reply(japan_name)
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려줍니다.\n"
