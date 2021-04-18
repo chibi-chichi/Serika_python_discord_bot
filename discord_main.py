@@ -104,30 +104,20 @@ class MyClient(discord.Client):
                 embed.add_field(name="난이도", value = difficulty, inline=False)
                 embed.add_field(name="곡 타입", value = song_type, inline=False)
                 embed.add_field(name="부른 사람", value = cv, inline=False)
-                embed.add_field(name="판정", value = title[6] + "\t" + perfect_note  + "\n" + title[7] + "\t" + great_note, inline=False)
-                embed.add_field(name=title[6], value = perfect_note, inline=False)
-                embed.add_field(name=title[7], value = great_note, inline=False)
-                embed.add_field(name=title[8], value = good_note, inline=False)
-                embed.add_field(name=title[9], value = badfastslow_note, inline=False)
-                embed.add_field(name=title[10], value = miss_note, inline=False)
-                embed.add_field(name=title[11], value = total_note, inline=False)
-                embed.add_field(name=title[12], value = max_combo, inline=False)
-                embed.add_field(name=title[13], value = full_combo, inline=False)
+                embed.add_field(name="판정", value = "**"+title[6] + "**\t" + perfect_note  + "\n**" + title[7] + "**\t" + great_note, inline=False)
+                #embed.add_field(name=title[6], value = perfect_note, inline=False)
+                #embed.add_field(name=title[7], value = great_note, inline=False)
+                #embed.add_field(name=title[8], value = good_note, inline=False)
+                #embed.add_field(name=title[9], value = badfastslow_note, inline=False)
+                #embed.add_field(name=title[10], value = miss_note, inline=False)
+                embed.add_field(name="COMBO", value = "**" + title[11] + "**\t" + total_note + "\n**" + title[12]  + "**\t" + max_combo + "\n**" + title[13] + "**\t" + full_combo, inline=False)
+                #embed.add_field(name=title[11], value = total_note, inline=False)
+                #embed.add_field(name=title[12], value = max_combo, inline=False)
+                #embed.add_field(name=title[13], value = full_combo, inline=False)
                 embed.add_field(name="HIGH SCORE", value = best_score, inline=False)
                 
                 await message.reply(embed=embed)
-#               await message.reply(#"> "+ japan_name +  "\n"
-#                                           "> " + korean_name +"\n"
-#                                           "> \n"
-#                                           ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
-#                                           "> \n"
-#                                           ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
-#                                           ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
-#                                           "> \n"
-#                                           "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
-#                                           ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
-#                                           "> \n"
-#                                           "> **TOTAL SCORE**                    " + best_score + "\n")
+
             except Exception as e:
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
