@@ -84,21 +84,23 @@ class MyClient(discord.Client):
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
                 
                 gc2 = gc1.get_all_values()
-                #japan_name = gc1.acell('B2').value
+                japan_name = gc1.acell('B2').value
                 korean_name = gc1.acell('C2').value
-                difficulty = gc1.acell('E2').value
-                perfect_note = gc1.acell('F2').value
-                great_note = gc1.acell('G2').value
-                good_note = gc1.acell('H2').value
-                fastslow_note = gc1.acell('I2').value
-                miss_note = gc1.acell('J2').value
-                total_note = gc1.acell('K2').value
-                max_combo = gc1.acell('L2').value
-                full_combo = gc1.acell('M2').value
-                best_score = str(gc1.acell('N2').value)
+                song_type = gc1.acell('D2').value
+                cv = gc1.acell('E2').value
+                difficulty = gc1.acell('F2').value
+                perfect_note = gc1.acell('G2').value
+                great_note = gc1.acell('H2').value
+                good_note = gc1.acell('I2').value
+                badfastslow_note = gc1.acell('J2').value
+                miss_note = gc1.acell('K2').value
+                total_note = gc1.acell('L2').value
+                max_combo = gc1.acell('M2').value
+                full_combo = gc1.acell('N2').value
+                best_score = str(gc1.acell('O2').value)
                 
                 embed = discord.Embed(title = "베스트 스코어", description = '자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
-                embed.add_field(name="한국어 제목", value = korean_name, inline=False)
+                embed.add_field(name="제목", value = japan_name + "    " +korean_name, inline=False)
                 embed.add_field(name="난이도", value = difficulty, inline=False)
                 await message.reply(embed=embed)
 #               await message.reply(#"> "+ japan_name +  "\n"
