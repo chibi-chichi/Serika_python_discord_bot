@@ -63,7 +63,7 @@ class MyClient(discord.Client):
             # 메세지를 불러옵니다
             choice_msg = message.content
             # .split()을 위해 "-선택" 이라는 단어를 제거합니다.
-            wanted_choice = choice_msg[4:]
+            wanted_choice = choice_msg[3:]
             # 선택지를 나눠 리스트화시킵니다.
             select_choose = wanted_choice.split()
             # 리스트화 된 선택지에서 하나를 골라줍니다.
@@ -72,9 +72,6 @@ class MyClient(discord.Client):
 
     # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
-            #called_msg = message.content
-            #wanted_msg = called_msg[3:]
-            
             try:
                 scopes = ['https://spreadsheets.google.com/feeds',
                          'https://www.googleapis.com/auth/drive']
@@ -87,8 +84,8 @@ class MyClient(discord.Client):
                 gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
                 
                 gc2 = gc1.get_all_values()
-                japan_name = str(gc1.acell('B2').value)
-                korean_name = str(gc1.acell('C2').value)
+                japan_name = gc1.acell('B2').value
+                korean_name = gc1.acell('C2').value
                 difficulty = gc1.acell('E2').value
                 perfect_note = gc1.acell('F2').value
                 great_note = gc1.acell('G2').value
@@ -99,7 +96,7 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
                 best_score = str(gc1.acell('N2').value)
-                await message.reply("> " + str(japan_name) + "\n"
+                await message.reply("> "+ japan_name +  "\n"
                                            "> " + korean_name +"\n"
                                            "> \n"
                                            ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
