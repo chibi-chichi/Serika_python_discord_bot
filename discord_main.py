@@ -33,6 +33,7 @@ class MyClient(discord.Client):
     # 진짜 수정한거 맞는 지 확인합니다. 고쳐졌다면서 안고쳐져있지만        
         if message.content.startswith('-수정'):
             await message.reply('고쳐졌어요!!', mention_author=True)
+            await message.reply('아마도 고쳐졌어요!!', mention_author=True)
     
     # 제작자의 남은 군생활을 알려줍니다.    
         if message.content.startswith('-복무일'):
@@ -111,7 +112,7 @@ class MyClient(discord.Client):
                                            "> \n"
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
-                await message.reply(traceback.format_exc() + japan_name)
+                await message.reply(traceback.format_exc())
             
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
