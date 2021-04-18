@@ -110,6 +110,8 @@ class MyClient(discord.Client):
                                            "> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
                 await message.reply(traceback.format_exc())
+                await message.reply(gc2)
+                
             
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
