@@ -96,18 +96,19 @@ class MyClient(discord.Client):
                 max_combo = gc1.acell('L2').value
                 full_combo = gc1.acell('M2').value
                 best_score = str(gc1.acell('N2').value)
-                await message.reply(#"> "+ japan_name +  "\n"
-                                           "> " + korean_name +"\n"
-                                           "> \n"
-                                           ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
-                                           "> \n"
-                                           ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
-                                           ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
-                                           "> \n"
-                                           "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
-                                           ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
-                                           "> \n"
-                                           "> **TOTAL SCORE**                    " + best_score + "\n")
+                await message.reply(korean_name)
+#               await message.reply(#"> "+ japan_name +  "\n"
+#                                           "> " + korean_name +"\n"
+#                                           "> \n"
+#                                           ">   ** 누가 불렀누**                                          모치즈키 안나 (CV.난스)\n"
+#                                           "> \n"
+#                                           ">  **DIFFICULTY**      **PERFECT**       **GREAT**       **GOOD**       **FAST/SLOW**       **MISS**\n"
+#                                           ">           " + difficulty +"                      " + perfect_note +"                   "+ great_note +"                     "+ good_note +"                       "+ fastslow_note +"                       "+ miss_note +"\n"
+#                                           "> \n"
+#                                           "> **TOTAL NOTES**               **MAX COMBO**               **FULL COMBO**\n"
+#                                           ">           " + total_note +"                                   " + max_combo +"                          " + full_combo +"\n"
+#                                           "> \n"
+#                                           "> **TOTAL SCORE**                    " + best_score + "\n")
             except Exception as e:
                 await message.reply(traceback.format_exc())
                 await message.reply(gc2)
