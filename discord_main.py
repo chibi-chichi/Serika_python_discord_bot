@@ -33,7 +33,6 @@ class MyClient(discord.Client):
     # 진짜 수정한거 맞는 지 확인합니다. 고쳐졌다면서 안고쳐져있지만        
         if message.content.startswith('-수정'):
             await message.reply('고쳐졌어요!!', mention_author=True)
-            await message.reply('아마도 고쳐졌어요!!', mention_author=True)
     
     # 제작자의 남은 군생활을 알려줍니다.    
         if message.content.startswith('-복무일'):
@@ -87,7 +86,7 @@ class MyClient(discord.Client):
                     gc1.replace("None", " ")
                     
                 gc2 = gc1.get_all_values()
-                japan_name = gc1.acell('B2').value.encode('utf-8')
+                japan_name = gc1.acell('B3').value
                 korean_name = gc1.acell('C2').value
                 difficulty = gc1.acell('E2').value
                 perfect_note = gc1.acell('F2').value
