@@ -93,7 +93,23 @@ class MyClient(discord.Client):
                 # 문제가 있으면 디스코드 채팅에 로그를 출력합니다. 만약 에러가 나온다면 꼭 알려주세요.
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
-            
+        
+        if message.content.startswith('-방도리'):
+            try:
+                get_information = message.content.split()
+                song_difficulty = get_information[1]
+                song_notes = get_information[2]
+                total_power = get_information[3]
+                notes_score = bangdream.note_score_calculate(song_difficulty, song_notes, total_power)
+                total_score = bangdream.total_score_calculate(notes_score, song_notes)
+                await message.reply("제 생각 그 곡에서는 " + str(total_score) + "정도 나올 것 같아요!")
+
+            except IndexError as e:
+                await message.reply("무언가가 잘 못 주신 것 같아요! -방도리 [난이도] [노트 갯수] [종합력]순으로 넣어주세요!")
+
+            except TypeError as e:
+                await message.reply("글자말고 숫자를 넣어주세요!")
+                await message.reply(traceback.format_exc())            
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
