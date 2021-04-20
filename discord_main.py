@@ -73,54 +73,19 @@ class MyClient(discord.Client):
     # 얘 어케 고치지
         if message.content.startswith('-엑셀'):
             try:
-                scopes = ['https://spreadsheets.google.com/feeds',
-                         'https://www.googleapis.com/auth/drive']
-                json_creds = os.getenv("GOOGLE_KEYS")
-                creds_dict = json.loads(json_creds)
-                creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
-                creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scopes)
-                
-                gc = gspread.authorize(creds)
-                gc1 = gc.open("리듬게임 스코어링 시트").worksheet('밀리시타')
-                
-                title = gc1.row_values(1)
-                japan_name = gc1.acell('B2').value
-                korean_name = gc1.acell('C2').value
-                song_type = gc1.acell('D2').value
-                cv = gc1.acell('E2').value
-                difficulty = gc1.acell('F2').value
-                perfect_note = gc1.acell('G2').value
-                great_note = gc1.acell('H2').value
-                good_note = gc1.acell('I2').value
-                badfastslow_note = gc1.acell('J2').value
-                miss_note = gc1.acell('K2').value
-                total_note = gc1.acell('L2').value
-                max_combo = gc1.acell('M2').value
-                full_combo = gc1.acell('N2').value
-                best_score = str(gc1.acell('O2').value)
-                
-                embed = discord.Embed(title = "베스트 스코어", description = '자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
-                embed.add_field(name="__TITLE__", value = japan_name + "\t" + korean_name, inline=False)
-                embed.add_field(name="__" + title[3] + "__", value = song_type, inline=False)
-                embed.add_field(name="__" + title[4] + "__", value = cv, inline=False)
-                embed.add_field(name="__" + title[5] + "__", value = difficulty, inline=False)
-                embed.add_field(name="__ADJUSTMENT__", value = "**" + title[6] + "**\t" + perfect_note + "\n**" + title[7] + "**\t" + great_note + "\n**" + title[8] + "**\t" + good_note + "\n**" + title[9] + "**\t" + badfastslow_note + "\n**" + title[10] + "**\t" + miss_note + "\n**" + title[11] + "**\t" + total_note + "\n**" + title[12]  + "**\t" + max_combo + "\n**" + title[13] + "**\t" + full_combo, inline=False)
-                #embed.add_field(name=title[6], value = perfect_note, inline=False)
-                #embed.add_field(name=title[7], value = great_note, inline=False)
-                #embed.add_field(name=title[8], value = good_note, inline=False)
-                #embed.add_field(name=title[9], value = badfastslow_note, inline=False)
-                #embed.add_field(name=title[10], value = miss_note, inline=False)
-                #embed.add_field(name=title[11], value = total_note, inline=False)
-                #embed.add_field(name=title[12], value = max_combo, inline=False)
-                #embed.add_field(name=title[13], value = full_combo, inline=False)
-                embed.add_field(name="__HIGH SCORE__", value = best_score, inline=False)
-                
-                await message.reply(embed=embed)
+                excel.sync_spread()
+                get_message = message.content
+                get_game_title = get_message.split()
+                gametitle = get_game_title[1]
+                gamesong = get_game_title[2]
+
+                imform = excel.spread_information(gametitle, gamesong)
+                await message.reply(embed=imform)
+
 
             except Exception as e:
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
-                
             
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
