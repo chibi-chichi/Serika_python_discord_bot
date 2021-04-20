@@ -39,7 +39,7 @@ class MyClient(discord.Client):
         if message.content.startswith('-복무일'):
             date = army.remain_days()
             date_percent = army.remain_days_percent()
-            await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했습니다!")
+            await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했!")
     
     # 로또 번호를 뽑아줍니다. 낙첨되도 책임은 지지 않습니다...  
         if message.content.startswith('-로또'):
@@ -96,10 +96,10 @@ class MyClient(discord.Client):
             
      # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
-            await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려줍니다.\n"
-                                       "-로또 : 로또 번호를 6개 선택해줍니다. 로또 번호를 추첨해서 뽑으면 뽑힐 때 기분이 더 좋아지는 효과가 있습니다.\n"
-                                       "-추첨 : 랜덤된 숫자 0~10을 골라줍니다. 보통 누군가 한 명이 일을 몰빵 당할 때나 사용됩니다.\n"
-                                       "-선택 [선택지1, 선택지2, ...] : 선택장애인 사람들을 위해 선택을 하게 해줍니다.```\n가 있어요!")
+            await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
+                                       "-로또 : 로또 번호를 6개 선택해줘요! 로또 번호를 추첨해서 뽑으면 뽑힐 때 기분이 더 좋아지는 효과가 있다고 해요!\n"
+                                       "-추첨 : 마음에 드는 숫자 0 에서 10까지 무작위로 골라줘요!.\n"
+                                       "-선택 [선택지1, 선택지2, ...] : 선택을 쉽게 못하는 여러분을 위해 제가 선택해요! 저는 선택지에서 좋은 것을 고르고 있는걸까요...?```\n가 있어요!")
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
 
