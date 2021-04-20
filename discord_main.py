@@ -74,17 +74,23 @@ class MyClient(discord.Client):
     # 구글 스프레드시트에 저장해둔 리듬게임의 최고 기록들을 가져옵니다. 개인적으로 사용하는 기능입니다.
         if message.content.startswith('-엑셀'):
             try:
-                #구글 스프레드시트에서 스프레드시트 파일을 가져옵니다.
-                excel.sync_spread() 
+                # 구글 스프레드시트에서 스프레드시트 파일을 가져옵니다.
+                excel.sync_spread()
+                # 메세지를 보내는 사람이 원하는 게임 이름과 곡을 가져옵니다. 이 때 곡은 제목을 치기엔 공식적으로 규정된 한국어 번역이 없기에 숫자로 대체합니다.
                 get_game_title = message.content.split()
+                # 찾고자 하는 리듬 게임 제목을 불러옵니다.
                 gametitle = get_game_title[1]
+                # 찾고자 하는 리듬 게임 곡을 불러옵니다.
                 gamesong = get_game_title[2]
-
+                
+                # 저장해둔 리듬게임과 그 게임 내부의 곡을 가져오는 역활을 합니다.
                 imform = excel.spread_information(gametitle, gamesong)
+                # embed로 메세지 출력합니다.
                 await message.reply(embed=imform)
 
 
             except Exception as e:
+                # 문제가 있으면 디스코드 채팅에 로그를 출력합니다. 만약 에러가 나온다면 꼭 알려주세요.
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
             
