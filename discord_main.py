@@ -102,7 +102,7 @@ class MyClient(discord.Client):
                 total_power = get_information[3]
                 notes_score = bangdream.note_score_calculate(song_difficulty, song_notes, total_power)
                 total_score = bangdream.total_score_calculate(notes_score, song_notes)
-                await message.reply("제 생각 그 곡에서는 " + str(total_score) + "정도 나올 것 같아요!")
+                await message.reply(str(total_score))
 
             except IndexError as e:
                 await message.reply("무언가가 잘 못 주신 것 같아요! -방도리 [난이도] [노트 갯수] [종합력]순으로 넣어주세요!")
