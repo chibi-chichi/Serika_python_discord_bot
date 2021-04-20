@@ -2,6 +2,7 @@ import os
 import discord
 import logging
 import army_date_calculate as army
+import spread_sheet_reader as excel
 import random
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
@@ -70,12 +71,12 @@ class MyClient(discord.Client):
             choose = random.choice(select_choose)
             await message.channel.send(choose + "(이)가 좋을 것 같아요!")
 
-    # 얘 어케 고치지
+    # 구글 스프레드시트에 저장해둔 리듬게임의 최고 기록들을 가져옵니다. 개인적으로 사용하는 기능입니다.
         if message.content.startswith('-엑셀'):
             try:
-                excel.sync_spread()
-                get_message = message.content
-                get_game_title = get_message.split()
+                #구글 스프레드시트에서 스프레드시트 파일을 가져옵니다.
+                excel.sync_spread() 
+                get_game_title = message.content.split()
                 gametitle = get_game_title[1]
                 gamesong = get_game_title[2]
 
