@@ -96,31 +96,39 @@ class MyClient(discord.Client):
     # 뱅드림! 걸즈 밴드 파티의 예상 스코어 계산기입니다.
         if message.content.startswith('-방도리'):
             try:
+                # 유저의 정보를 가져옵니다. 각각 곡의 난이도, 노트 개수, 밴드 종합력.
                 get_information = message.content.split()
                 song_difficulty = int(get_information[1])
                 song_notes = int(get_information[2])
                 total_power = int(get_information[3])
+                # 노트당 스코어를 가져옵니다.
                 notes_score = bangdream.note_score_calculate(song_difficulty, song_notes, total_power)
+                # 전체 곡의 스코어를 예상해서 가져옵니다.
                 total_score = bangdream.total_score_calculate(notes_score, song_notes)
                 await message.reply("제 생각 그 곡에서는 " + str(total_score) + " 정도 나올 것 같아요!")
 
             except IndexError as e:
+                # 너무 높은 숫자를 주거나 무언가가 틀리면 에러 메세지가 나옵니다.
                 await message.reply("무언가가 잘 못 주신 것 같아요! -방도리 [난이도] [노트 갯수] [종합력]순으로 넣어주세요!")
 
             except TypeError as e:
+                # 정수가 아닌 문자열을 주면 에러 메세지가 나옵니다. 추가로 에러 로그까지 같이 나옵니다.
                 await message.reply("글자말고 숫자를 넣어주세요!")
                 await message.reply(traceback.format_exc())
                 
-    # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다.
+    # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다. 아직 미완성입니다.
         if message.content.startswith('-투어') or message.content.startswith('-시어터'):
             try:
                 get_message = message.content.split()
+                # 투어 이벤트 점수아트 계산기
                 if get_message[0] == "-투어":
                     MLTH.tour_point_calculation(get_message[1], get_message[2], get_message[3], get_message[4])
                     await message.reply("이게 뭐예요?")
+                # 시어터 이벤트 점수아트 계산기
                 elif get_message[0] == "-시어터":
                     MLTH.theater_point_calculation(get_message[1], get_message[2], get_message[3])
                     await message.reply("히이이이익")
+       # 에러가 생기면 에러 로그가 나옵니다. 아직 미완성입니다.
             except Exception as e:
                 await message.reply(traceback.format_exc())
                 
