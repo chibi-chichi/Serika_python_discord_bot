@@ -53,24 +53,24 @@ def spread_information(game_title, game_song):
     if japan_name == korean_name:
         song_title = japan_name
     # 디스코드에서 출력되는 메세지를 embed로 정리했습니다.
-    embed = discord.Embed(title="베스트 스코어", description='자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
-    embed.add_field(name="__TITLE__", value= song_title, inline=False)
-    embed.add_field(name="__" + title[3] + "__", value=song_type, inline=False)
+    embed = discord.Embed(title="베스트 스코어", description='자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.', color = 0x9B59B6)
+    embed.add_field(name="__TITLE__", value= song_title, inline=True)
+    embed.add_field(name="__" + title[3] + "__", value=song_type, inline=True)
     embed.add_field(name="__" + title[4] + "__", value=artist, inline=False)
     embed.add_field(name="__" + title[5] + "__", value=difficulty, inline=False)
-    embed.add_field(name="__ADJUSTMENT__",
-                    value="**" + title[6] + "**\t" + perfect_note + "\n**" + title[7] + "**\t" + great_note + "\n**" +
-                          title[8] + "**\t" + good_note + "\n**" + title[9] + "**\t" + badfastslow_note + "\n**" +
-                          title[10] + "**\t" + miss_note + "\n**" + title[11] + "**\t" + total_note + "\n**" + title[
-                              12] + "**\t" + max_combo + "\n**" + title[13] + "**\t" + full_combo, inline=False)
-    # embed.add_field(name=title[6], value = perfect_note, inline=False)
-    # embed.add_field(name=title[7], value = great_note, inline=False)
-    # embed.add_field(name=title[8], value = good_note, inline=False)
-    # embed.add_field(name=title[9], value = badfastslow_note, inline=False)
-    # embed.add_field(name=title[10], value = miss_note, inline=False)
-    # embed.add_field(name=title[11], value = total_note, inline=False)
-    # embed.add_field(name=title[12], value = max_combo, inline=False)
-    # embed.add_field(name=title[13], value = full_combo, inline=False)
+    #embed.add_field(name="__ADJUSTMENT__",
+    #                value="**" + title[6] + "**\t" + perfect_note + "\n**" + title[7] + "**\t" + great_note + "\n**" +
+    #                      title[8] + "**\t" + good_note + "\n**" + title[9] + "**\t" + badfastslow_note + "\n**" +
+    #                      title[10] + "**\t" + miss_note + "\n**" + title[11] + "**\t" + total_note + "\n**" + title[
+    #                          12] + "**\t" + max_combo + "\n**" + title[13] + "**\t" + full_combo, inline=False)
+    embed.add_field(name=title[6], value = perfect_note, inline=True)
+    embed.add_field(name=title[7], value = great_note, inline=True)
+    embed.add_field(name=title[8], value = good_note, inline=True)
+    embed.add_field(name=title[9], value = badfastslow_note, inline=True)
+    embed.add_field(name=title[10], value = miss_note, inline=True)
+    embed.add_field(name=title[11], value = total_note, inline=True)
+    embed.add_field(name=title[12], value = max_combo, inline=True)
+    embed.add_field(name=title[13], value = full_combo, inline=True)
     embed.add_field(name="__HIGH SCORE__", value=best_score, inline=False)
     return embed
 
