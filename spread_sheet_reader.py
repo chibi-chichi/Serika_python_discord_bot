@@ -17,17 +17,20 @@ def sync_spread():
         gc = gspread.authorize(creds)
         return gc
 
-    # 문제가 생기면 로그를 출력합니다.
+    # 문제가 생기면 에러 로그를 출력합니다.
     except Exception as e:
         print(traceback.format_exc())
 
 def spread_information(game_title, game_song):
-    google_spread = sync_spread()
-    gc1 = google_spread.open("리듬게임 스코어링 시트").worksheet(game_title)
+    google_spread = sync_spread() # 구글 스프레드시트와 공유해서 출력하게 해줍니다.
+    gc1 = google_spread.open("리듬게임 스코어링 시트").worksheet(game_title) # 각 게임의 엑셀을 찾아가줍니다.
     title = gc1.row_values(1) # 엑셀의 정렬한 순서를 나타냅니다.
+    
     #score_values = gc1.row_values(game_song)
     #japan_name = score_values[1]
-
+    # 위에 있는 코드들은 엑셀이 다 채워진 후 최적화를 해줄겁니다.
+    
+    # 엄청난 노가다의 빛으로 비어있는 엑셀칸까지 다 출력해줍니다.
     japan_name = str(gc1.acell('B' + str(game_song)).value)
     korean_name = str(gc1.acell('C' + str(game_song)).value)
     song_type = str(gc1.acell('D' + str(game_song)).value)
@@ -42,12 +45,14 @@ def spread_information(game_title, game_song):
     max_combo = str(gc1.acell('M' + str(game_song)).value)
     full_combo = str(gc1.acell('N' + str(game_song)).value)
     best_score = str(gc1.acell('O' + str(game_song)).value)
-
+    
+    # 노래 제목을 한 번에 출력시켜주는 변수를 생성했습니다.
     song_title = japan_name + "\t" + korean_name
 
+    # 만약 제목이 일본어와 한국어가 같은 영어일 시에 노래 제목은 하나만 출력하도록 합니다.
     if japan_name == korean_name:
         song_title = japan_name
-
+    # 디스코드에서 출력되는 메세지를 embed로 정리했습니다.
     embed = discord.Embed(title="베스트 스코어", description='자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.')
     embed.add_field(name="__TITLE__", value= song_title, inline=False)
     embed.add_field(name="__" + title[3] + "__", value=song_type, inline=False)
