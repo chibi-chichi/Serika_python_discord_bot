@@ -52,7 +52,7 @@ def spread_information(game_title, game_song):
     # 만약 제목이 일본어와 한국어가 같은 영어일 시에 노래 제목은 하나만 출력하도록 합니다.
     if japan_name == korean_name:
         song_title = japan_name
-    # 디스코드에서 출력되는 메세지를 embed로 정리했습니다.
+    # 디스코드에서 출력되는 메세지를 embed로 정리했습니다. embed에 추후 앨범 커버 사진 추가 예정
     embed = discord.Embed(title="베스트 스코어", description='자신이 가장 플레이 한 곡 중에서 제일 잘한 기록을 가져옵니다.', color = 0x9B59B6)
     embed.add_field(name="__TITLE__", value= song_title, inline=True)
     embed.add_field(name="__" + title[3] + "__", value=song_type, inline=True)
