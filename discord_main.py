@@ -3,6 +3,7 @@ import discord
 import logging
 import army_date_calculate as army
 import spread_sheet_reader as excel
+import bang_dream_score_caluclator as bangdream
 import random
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
@@ -97,12 +98,12 @@ class MyClient(discord.Client):
         if message.content.startswith('-방도리'):
             try:
                 get_information = message.content.split()
-                song_difficulty = get_information[1]
-                song_notes = get_information[2]
-                total_power = get_information[3]
+                song_difficulty = int(get_information[1])
+                song_notes = int(get_information[2])
+                total_power = int(get_information[3])
                 notes_score = bangdream.note_score_calculate(song_difficulty, song_notes, total_power)
                 total_score = bangdream.total_score_calculate(notes_score, song_notes)
-                await message.reply(str(total_score))
+                await message.reply("제 생각 그 곡에서는 " + str(total_score) + " 정도 나올 것 같아요!")
 
             except IndexError as e:
                 await message.reply("무언가가 잘 못 주신 것 같아요! -방도리 [난이도] [노트 갯수] [종합력]순으로 넣어주세요!")
