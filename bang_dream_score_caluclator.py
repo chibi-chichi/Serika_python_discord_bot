@@ -12,7 +12,7 @@ def note_score_calculate(difficulty, notes, deck_power):
     elif notes > 100 and notes < 300:
         notes_combo_bonus = 1 + (notes // 50)
     elif notes > 301:
-        notes_combo_bonus = 1.07 + (1.01 * ((notes - 301) // 100))
+        notes_combo_bonus = 1.07 + (0.01 * ((notes - 301) // 100))
 
     note_score = deck_power * 3 * difficulty_bonus / notes * 1.1 * notes_combo_bonus
     print(note_score)
