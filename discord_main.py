@@ -1,14 +1,13 @@
 import os
+import random
 import discord
 import logging
+import traceback
 import army_date_calculate as army
 import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
-import random
-from oauth2client.service_account import ServiceAccountCredentials
-import gspread
-import json
-import traceback
+import MLTH_event_point_calculator as MLTH
+
 
 TOKEN = os.environ["TOKEN"]
 
@@ -89,12 +88,12 @@ class MyClient(discord.Client):
                 # embed로 메세지 출력합니다.
                 await message.reply(embed=imform)
 
-
             except Exception as e:
                 # 문제가 있으면 디스코드 채팅에 로그를 출력합니다. 만약 에러가 나온다면 꼭 알려주세요.
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
-        
+                
+    # 뱅드림! 걸즈 밴드 파티의 예상 스코어 계산기입니다.
         if message.content.startswith('-방도리'):
             try:
                 get_information = message.content.split()
@@ -110,8 +109,22 @@ class MyClient(discord.Client):
 
             except TypeError as e:
                 await message.reply("글자말고 숫자를 넣어주세요!")
-                await message.reply(traceback.format_exc())            
-     # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
+                await message.reply(traceback.format_exc())
+                
+    # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다.
+        if message.content.startswith('-투어') or message.content.startswith('-시어터'):
+            try:
+                get_message = message.content.split()
+                if get_message[0] == "-투어":
+                    MLTH.tour_point_calculation(get_message[1], get_message[2], get_message[3], get_message[4])
+                    await message.reply("이게 뭐예요?")
+                elif get_message[0] == "-시어터":
+                    MLTH.theater_point_calculation(get_message[1], get_message[2], get_message[3])
+                    await message.reply("히이이이익")
+            except Exception as e:
+                await message.reply(traceback.format_exc())
+                
+    # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
                                        "-로또 : 로또 번호를 6개 선택해드려요! 로또 번호를 추첨해서 뽑으면 뽑힐 때 기분이 더 좋아지는 효과가 있다고 해요!\n"
