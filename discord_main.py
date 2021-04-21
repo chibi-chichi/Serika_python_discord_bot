@@ -40,7 +40,7 @@ class MyClient(discord.Client):
         if message.content.startswith('-복무일'):
             date = army.remain_days()
             date_percent = army.remain_days_percent()
-            await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했!")
+            await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했어요!")
     
     # 로또 번호를 뽑아줍니다. 낙첨되도 책임은 지지 않습니다...  
         if message.content.startswith('-로또'):
