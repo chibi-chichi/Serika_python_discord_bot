@@ -8,7 +8,6 @@ import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
 import MLTH_event_point_calculator as MLTH
 
-
 TOKEN = os.environ["TOKEN"]
 
 client = discord.Client()
