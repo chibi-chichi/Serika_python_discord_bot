@@ -116,7 +116,7 @@ class MyClient(discord.Client):
                 await message.reply(traceback.format_exc())
                 
     # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다. 아직 미완성입니다.
-        if message.content.startswith('-투어') or message.content.startswith('-시어터'):
+ '''       if message.content.startswith('-투어') or message.content.startswith('-시어터'):
             try:
                 get_message = message.content.split()
                 # 투어 이벤트 점수아트 계산기
@@ -130,7 +130,7 @@ class MyClient(discord.Client):
        # 에러가 생기면 에러 로그가 나옵니다. 아직 미완성입니다.
             except Exception as e:
                 await message.reply(traceback.format_exc())
-                
+                '''
     # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
