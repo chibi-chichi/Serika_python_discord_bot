@@ -6,7 +6,7 @@ import traceback
 import army_date_calculate as army
 import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
-#import MLTH_event_point_calculator as MLTH
+
 
 TOKEN = os.environ["TOKEN"]
 
@@ -115,22 +115,6 @@ class MyClient(discord.Client):
                 await message.reply("글자말고 숫자를 넣어주세요!")
                 await message.reply(traceback.format_exc())
                 
-    # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다. 아직 미완성입니다.
- #'''       if message.content.startswith('-투어') or message.content.startswith('-시어터'):
- #           try:
- #               get_message = message.content.split()
- #               # 투어 이벤트 점수아트 계산기
- #               if get_message[0] == "-투어":
- #                   MLTH.tour_point_calculation(get_message[1], get_message[2], get_message[3], get_message[4])
- #                   await message.reply("이게 뭐예요?")
- #               # 시어터 이벤트 점수아트 계산기
- #               elif get_message[0] == "-시어터":
- #                   MLTH.theater_point_calculation(get_message[1], get_message[2], get_message[3])
- #                   await message.reply("히이이이익")
-       # 에러가 생기면 에러 로그가 나옵니다. 아직 미완성입니다.
- #           except Exception as e:
- #               await message.reply(traceback.format_exc())
- #               '''
     # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
