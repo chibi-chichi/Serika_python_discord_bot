@@ -107,3 +107,21 @@ def tour_point_calculation(current_score, object_score, items, progressivity):
 
 if __name__ == '__main__':
     main()
+
+    
+        # 아이돌마스터 밀리언 라이브 시어터 데이즈 투어 이벤트와 시어터 이벤트의 점수아트 계산기입니다. 아직 미완성입니다.
+ #'''       if message.content.startswith('-투어') or message.content.startswith('-시어터'):
+ #           try:
+ #               get_message = message.content.split()
+ #               # 투어 이벤트 점수아트 계산기
+ #               if get_message[0] == "-투어":
+ #                   MLTH.tour_point_calculation(get_message[1], get_message[2], get_message[3], get_message[4])
+ #                   await message.reply("이게 뭐예요?")
+ #               # 시어터 이벤트 점수아트 계산기
+ #               elif get_message[0] == "-시어터":
+ #                   MLTH.theater_point_calculation(get_message[1], get_message[2], get_message[3])
+ #                   await message.reply("히이이이익")
+       # 에러가 생기면 에러 로그가 나옵니다. 아직 미완성입니다.
+ #           except Exception as e:
+ #               await message.reply(traceback.format_exc())
+ #               '''
