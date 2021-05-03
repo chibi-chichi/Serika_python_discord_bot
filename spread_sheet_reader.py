@@ -25,7 +25,7 @@ def spread_information(game_title, game_song):
     google_spread = sync_spread() # 구글 스프레드시트와 공유해서 출력하게 해줍니다.
     gc1 = google_spread.open("리듬게임 스코어링 시트").worksheet(game_title) # 각 게임의 엑셀을 찾아가줍니다.
     title = gc1.row_values(1) # 엑셀의 정렬한 순서를 나타냅니다.
-    game_song = int(game_song) - 1 # 1은 title이 출력이 되기 때문에 1부터 시작할려면 -1을 해줘야합니다.
+    game_song = int(game_song) + 1 # 1은 title이 출력이 되기 때문에 1부터 시작할려면 +1을 해줘야합니다.
     #score_values = gc1.row_values(game_song)
     #japan_name = score_values[1]
     # 위에 있는 코드들은 엑셀이 다 채워진 후 최적화를 해줄겁니다.
