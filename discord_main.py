@@ -30,10 +30,6 @@ class MyClient(discord.Client):
         if message.content.startswith('-안녕'):
             await message.reply('안녕하세요!!', mention_author=True)
     
-    # 진짜 수정한거 맞는 지 확인합니다. 고쳐졌다면서 안고쳐져있지만        
-        if message.content.startswith('-수정'):
-            await message.reply('고쳐졌어요!!', mention_author=True)
-    
     # 제작자의 남은 군생활을 알려줍니다.    
         if message.content.startswith('-복무일'):
             date = army.remain_days()
