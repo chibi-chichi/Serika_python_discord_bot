@@ -53,6 +53,12 @@ class MyClient(discord.Client):
             # 숫자들의 리스트에서 하나를 뽑아줍니다.
             picked = random.choice(possible_numb)
             await message.channel.send("숫자 " + picked + "가 나왔어요!")
+
+        if message.content.startswith('-전적'):
+            nickname = message.content[4:]
+            nickname = nickname.replace(" ", "%20")
+            opggwebsite = 'https://www.op.gg/summoner/userName='
+            await message.channel.send(opggwebsite + nickname)
     
     # 선택장애를 위해 선택을 대신 해줍니다.
         if message.content.startswith('-선택'):
