@@ -20,9 +20,9 @@ def note_score_calculate(difficulty, notes, deck_power):
     elif notes > 301:
         notes_combo_bonus = 1.07 + (0.01 * ((notes - 301) // 100))
     else:
-         #혹시 몰라서 1배로 설정
+         #첫 기본 노트 콤보 스코어는 1배이므로 1배로 설정
         notes_combo_bonus = 1
-     # 방도리 스코어 공식 = 종합력 * 3 * 난이도 보너스 / 노트 갯수 * 1.1(퍼펙트 판정 보너스) * 노트 콤보 배율 보너스
+     # 방도리 스코어 공식 = 종합력 * 3 * 난이도 보너스 / 노트 갯수 * 1.1(퍼펙트 판정 보너스) * 노트 콤보 배율 보너스 * 스킬 스코어 보너스
     note_score = deck_power * 3 * difficulty_bonus / notes * 1.1 * notes_combo_bonus
      # 노트 개당 숫자가 소숫점 몇십자리까지 나오기 때문에 반올림을 해주었습니다.
     note_score = round(note_score)
