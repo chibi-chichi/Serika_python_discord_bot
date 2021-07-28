@@ -1,12 +1,14 @@
 import os
 import random
+import urllib.request
+
 import discord
 import logging
 import traceback
 import army_date_calculate as army
 import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
-
+import mltd_border as border
 
 TOKEN = os.environ["TOKEN"]
 
@@ -116,15 +118,20 @@ class MyClient(discord.Client):
                 # 정수가 아닌 문자열을 주면 에러 메세지가 나옵니다. 추가로 에러 로그까지 같이 나옵니다.
                 await message.reply("글자말고 숫자를 넣어주세요!")
                 await message.reply(traceback.format_exc())
-                
+        if message.content.startswith('-밀리시타보더'):
+            embed_border = border.get_embed()
+            await message.channel.send(embed=embed_border)
+
+
     # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
             await message.channel.send("안녕하세요! 치비님의 인공비서 하코자키 세리카에요! \n\n현재 사용할 수 있는 기능으로는\n```fix\n-복무일 : 개발자의 남은 복무일수를 알려주는 기능이예요!.\n"
                                        "-로또 : 로또 번호를 6개 선택해드려요! 로또 번호를 추첨해서 뽑으면 뽑힐 때 기분이 더 좋아지는 효과가 있다고 해요!\n"
                                        "-추첨 : 마음에 드는 숫자 0 에서 10까지 무작위로 골라드려요!.\n"
-                                       "-선택 [선택지1, 선택지2, ...] : 선택을 쉽게 못하는 여러분을 위해 제가 선택해요! 그런데 저는 선택지에서 좋은 것을 고르고 있는걸까요...?"
-                                       "-엑셀 [게임 이름] [엑셀 열 번호] : 개발자의 여러가지 직업(?)에서 각 곡에서 제일 좋았던 기록을 알려주어요! 아직 엑셀은 완성이 되지 않아서 비어있는 곡들이 많을거에요!"
-                                       "-방도리 [곡 난이도] [노트 개수] [밴드 종합력(에어리어 아이템 포함)] : 뱅드림이라는 게임에서 나오는 점수를 대충이나마 예상을 해주어요! 이 개발자는 이런 곳에서 있어도 괜찮은걸까요?```\n가 있어요!")
+                                       "-선택 [선택지1, 선택지2, ...] : 선택을 쉽게 못하는 여러분을 위해 제가 선택해요! 그런데 저는 선택지에서 좋은 것을 고르고 있는걸까요...?\n"
+                                       "-엑셀 [게임 이름] [엑셀 열 번호] : 개발자의 여러가지 직업(?)에서 각 곡에서 제일 좋았던 기록을 알려주어요! 아직 엑셀은 완성이 되지 않아서 비어있는 곡들이 많을거에요!\n"
+                                       "-방도리 [곡 난이도] [노트 개수] [밴드 종합력(에어리어 아이템 포함)] : 뱅드림이라는 게임에서 나오는 점수를 대충이나마 예상을 해주어요! 이 개발자는 이런 곳에서 있어도 괜찮은걸까요?\n"
+                                       "-밀리시타보더 : 현재 밀리언라이브 시어터데이즈 일본 서버의 이벤트 포인트 순위를 알려드려요!```\n가 있어요!")
 #기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
 
