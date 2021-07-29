@@ -52,17 +52,23 @@ def get_keys(convertdict):
 
 
 def get_embed():
-    convertdict = get_border()
-    values = list(convertdict.values())
-    values = values[0]
-    call_values = get_values(convertdict)
-    summary_time = values["summaryTime"].replace("T", "\n")
-    borderEmbed = discord.Embed(title="**밀리시타 이벤트 보더**", description=summary_time, color=0x9B59B6)
-    borderEmbed.add_field(name="MLTD Event Point Border", value='Platinum Star Theater', inline=False)
-    for value in call_values:
-        try:
-            borderEmbed.add_field(name=value["rank"], value=int(value["score"]), inline=True)
-        except TypeError:
-            pass
-    borderEmbed.add_field(name="업데이트 주기 변경", value="30분\0 1시간\0 12시간\0 24시간")
-    return borderEmbed
+    try:
+        convertdict = get_border()
+        values = list(convertdict.values())
+        values = values[0]
+        call_values = get_values(convertdict)
+        summary_time = values["summaryTime"].replace("T", "\n")
+        borderEmbed = discord.Embed(title="**밀리시타 이벤트 보더**", description=summary_time, color=0x9B59B6)
+        borderEmbed.add_field(name="MLTD Event Point Border", value='Platinum Star Theater', inline=False)
+        for value in call_values:
+            try:
+                if value["score"] == "None":
+                    value["score"].replace("None", "0") # 되는지 확인 해보기 (아직 되는지 안되는지 디버깅 안해봄)
+                borderEmbed.add_field(name=value["rank"], value=int(value["score"]), inline=True)
+            except TypeError:
+                pass
+        borderEmbed.add_field(name="업데이트 주기 변경", value="30분\0 1시간\0 12시간\0 24시간")
+        return borderEmbed
+    except AttributeError as e:
+        Empty_borderEmbed = discord.Embed(title="**밀리시타 이벤트 보더**", description="현 이벤트는 랭킹 기록이 집계가 되지 않는 이벤트입니다.", color=0xff0000)
+        return Empty_borderEmbed
