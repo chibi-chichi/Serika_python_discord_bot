@@ -1,55 +1,68 @@
-import urllib
-import json
 import discord
+import json
+import urllib.request
 
-'''
-event_url = "https://api.matsurihi.me/mltd/v1/events/"
-request_url = urllib.request.Request(event_url)
-response_url = urllib.request.urlopen(request_url)
-event_data = response_url.read()
-encoded = event_data.decode(encoding='UTF-8')
-convert_todict = eval(encoded)
 
-#이벤트 넘버 불러오기 해야함
+# 최신의 이벤트 정보를 얻습니다.
+def get_event_info():
+    event_url = "https://api.matsurihi.me/mltd/v1/events/"
+    request_url = urllib.request.Request(event_url)
+    response_url = urllib.request.urlopen(request_url)
+    event_data = response_url.read()
+    encoded = event_data.decode(encoding='UTF-8')
+    # convert_todict = eval(encoded)
+    convert_todict = json.loads(encoded)
+    event_id = list(convert_todict[-1].values())
+    # eventNumber = list(convert_todict.values())
+    # print(eventNumber)
+    return event_id
 
-event_number = str(70)
-rankingborder = "/ranking/borderPoints"
-'''
-#eventRankingUrl = event_url + event_number + rankingborder
-#print(eventRankingUrl)
 
-eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/194/rankings/borderPoints"
-request = urllib.request.Request(eventRankingUrl)
-response = urllib.request.urlopen(request)
-data = response.read()
-encoded = data.decode(encoding='UTF-8')
-convertdict = eval(encoded)
+# 이벤트 보더를 얻습니다.
+def get_border():
+    event_id = get_event_info()
+    eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + str(event_id[0]) + "/rankings/borderPoints"
+    request = urllib.request.Request(eventRankingUrl)
+    response = urllib.request.urlopen(request)
+    data = response.read()
+    encoded = data.decode(encoding='UTF-8')
+    # convertdict = eval(encoded)
+    convertdict = json.loads(encoded)
+    return convertdict
 
-def get_values():
+
+# 최신 이벤트의 타입을 얻습니다.
+def get_event_type():
+    event_type_dict = {'0': 'Showtime', '1': 'Millicolle', '2': 'Theater', '3': 'Tour', '4': 'Anniversary'
+                       , '5': 'Twinstage', '6': 'Tune', '7': 'tale', '8': 'pst'}
+    event_type = get_event_info()
+    return event_type_dict.get(str(event_type[2]))
+
+
+def get_values(convertdict):
     values = list(convertdict.values())
-    get_border = values[0]["scores"]
-    return get_border
+    border = values[0]["scores"]
+    return border
 
-def get_keys():
+
+def get_keys(convertdict):
     keys = list(convertdict.keys())
     keys = keys[0]
     return keys
 
+
 def get_embed():
+    convertdict = get_border()
     values = list(convertdict.values())
     values = values[0]
-    call_values = get_values()
+    call_values = get_values(convertdict)
     summary_time = values["summaryTime"].replace("T", "\n")
     borderEmbed = discord.Embed(title="**밀리시타 이벤트 보더**", description=summary_time, color=0x9B59B6)
     borderEmbed.add_field(name="MLTD Event Point Border", value='Platinum Star Theater', inline=False)
-    borderEmbed.add_field(name=call_values[0]["rank"], value=int(call_values[0]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[1]["rank"], value=int(call_values[1]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[2]["rank"], value=int(call_values[2]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[3]["rank"], value=int(call_values[3]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[4]["rank"], value=int(call_values[4]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[5]["rank"], value=int(call_values[5]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[6]["rank"], value=int(call_values[6]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[7]["rank"], value=int(call_values[7]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[8]["rank"], value=int(call_values[8]["score"]), inline=True)
-    borderEmbed.add_field(name=call_values[9]["rank"], value=int(call_values[9]["score"]), inline=True)
+    for value in call_values:
+        try:
+            borderEmbed.add_field(name=value["rank"], value=int(value["score"]), inline=True)
+        except TypeError:
+            pass
+    borderEmbed.add_field(name="업데이트 주기 변경", value="30분\0 1시간\0 12시간\0 24시간")
     return borderEmbed
