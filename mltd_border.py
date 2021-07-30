@@ -10,23 +10,20 @@ def get_event_info():
     response_url = urllib.request.urlopen(request_url)
     event_data = response_url.read()
     encoded = event_data.decode(encoding='UTF-8')
-    # convert_todict = eval(encoded)
     convert_todict = json.loads(encoded)
     event_id = list(convert_todict[-1].values())
-    # eventNumber = list(convert_todict.values())
-    # print(eventNumber)
     return event_id
 
 
 # 이벤트 보더를 얻습니다.
 def get_border():
     event_id = get_event_info()
-    eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + str(event_id[0]) + "/rankings/borderPoints"
+    # eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + str(event_id[0]) + "/rankings/borderPoints"
+    eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + "194" + "/rankings/borderPoints"
     request = urllib.request.Request(eventRankingUrl)
     response = urllib.request.urlopen(request)
     data = response.read()
     encoded = data.decode(encoding='UTF-8')
-    # convertdict = eval(encoded)
     convertdict = json.loads(encoded)
     return convertdict
 
@@ -34,7 +31,7 @@ def get_border():
 # 최신 이벤트의 타입을 얻습니다.
 def get_event_type():
     event_type_dict = {'0': 'Showtime', '1': 'Millicolle', '2': 'Theater', '3': 'Tour', '4': 'Anniversary'
-                       , '5': 'Twinstage', '6': 'Tune', '7': 'tale', '8': 'pst'}
+        , '5': 'Twinstage', '6': 'Tune', '7': 'tale', '8': 'pst'}
     event_type = get_event_info()
     return event_type_dict.get(str(event_type[2]))
 
@@ -62,13 +59,12 @@ def get_embed():
         borderEmbed.add_field(name="MLTD Event Point Border", value='Platinum Star Theater', inline=False)
         for value in call_values:
             try:
-                if value["score"] == "None":
-                    value["score"].replace("None", "0") # 되는지 확인 해보기 (아직 되는지 안되는지 디버깅 안해봄)
+                if value["score"] is None:
+                    value["score"] = "0"
                 borderEmbed.add_field(name=value["rank"], value=int(value["score"]), inline=True)
             except TypeError:
                 pass
         borderEmbed.add_field(name="업데이트 주기 변경", value="30분\0 1시간\0 12시간\0 24시간")
         return borderEmbed
-    except AttributeError as e:
-        Empty_borderEmbed = discord.Embed(title="**밀리시타 이벤트 보더**", description="현 이벤트는 랭킹 기록이 집계가 되지 않는 이벤트입니다.", color=0xff0000)
-        return Empty_borderEmbed
+    except AttributeError:
+        return -1
