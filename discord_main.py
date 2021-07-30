@@ -33,7 +33,7 @@ class MyClient(discord.Client):
     async def runtime_get_mili_border(self):
         global msg, reaction_message_id
         # 현재 시간을 초 단위로 환산한 후 cool_time 정각에 알려줍니다. 봇의 과부하를 막기 위해 XX분 00초로 알려주는건 생략합니다.
-        await asyncio.sleep(31)
+        await asyncio.sleep(60)
         if (int(time.time()) + 32400) % cool_time < 60:  # UTC 기준이므로 UTC+9로 환산해줍니다, XX분 59초까지는 보낼 수 있습니다.
             embed_border = border.get_embed()
             if embed_border == -1:
