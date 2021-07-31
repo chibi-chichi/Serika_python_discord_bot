@@ -1,21 +1,23 @@
-import os
-import random
-import urllib.request
-
+import asyncio
 import discord
 import logging
+import os
+import random
+import time
 import traceback
+from discord.ext import tasks
+
 import army_date_calculate as army
 import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
 import mltd_border as border
-from discord.utils import get
 
 TOKEN = os.environ["TOKEN"]
-
 client = discord.Client()
-msg = ''
-userID = ''
+cool_time = 1800  # 기본값 30분 단위
+msg = ''  # 봇이 가장 마지막으로 보낸 보더 메세지 embed
+reaction_message_id = int  # 봇이 가장 마지막으로 보더 이벤트 전송을 한 메세지 ID
+channel = int  # 보더 이벤트 전송 체널 리스트
 
 
 class MyClient(discord.Client):
@@ -23,23 +25,50 @@ class MyClient(discord.Client):
     async def on_ready(self):
         # 건설로봇 준비완료
         print('{0}준비 완료!'.format(self.user))
+        # 밀리시타 보더 반복 시작
+        self.runtime_get_mili_border.start()
+
+    # 밀리시타 보더를 유저가 정한 주기만큼 움직입니다.
+    @tasks.loop()
+    async def runtime_get_mili_border(self):
+        global msg, reaction_message_id
+        # 현재 시간을 초 단위로 환산한 후 cool_time 정각에 알려줍니다. 봇의 과부하를 막기 위해 XX분 00초로 알려주는건 생략합니다.
+        await asyncio.sleep(60)
+        if (int(time.time()) + 32400) % cool_time < 60:  # UTC 기준이므로 UTC+9로 환산해줍니다, XX분 59초까지는 보낼 수 있습니다.
+            embed_border = border.get_embed()
+            if embed_border == -1:
+                return
+            else:
+                event_send = client.get_channel(channel)
+                # 보낼 체널이 없으면 return 합니다.
+                if not event_send:
+                    return
+                msg = await event_send.send(embed=embed_border)
+                reaction_message_id = msg.id
+                reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
+                for emoji in reactions:
+                    await msg.add_reaction(emoji)
 
     # 누군가가 이모지에 반응을 해 줬을 때 액션을 취합니다.
     async def on_raw_reaction_add(self, payload):
-        global msg, userID
-        # print(userID, payload.user_id)
-        if payload.user_id == userID:
+        global cool_time
+        # 반응해준 유저가 봇이 아닐때 그리고 반응을 추가한 메세지가 가장 최신으로 봇이 보낸 메세지 일때 다음과 같이 행동합니다.
+        if payload.message_id == reaction_message_id and payload.user_id != self.user.id:
             if payload.emoji.name in '1️⃣':
                 await msg.reply("업데이트 주기가 30분으로 변경되었어요!")
-
+                cool_time = 1800
             elif payload.emoji.name in '2️⃣':
                 await msg.reply("업데이트 주기가 1시간으로 변경되었어요!")
+                cool_time = 3600
             elif payload.emoji.name in '3️⃣':
                 await msg.reply("업데이트 주기가 12시간으로 변경되었어요!")
+                cool_time = 43200
             elif payload.emoji.name in '4️⃣':
                 await msg.reply("업데이트 주기가 24시간으로 변경되었어요!")
+                cool_time = 86400
             else:
                 return
+            self.runtime_get_mili_border.restart()
 
     async def on_message(self, message):
         # DM에서 무슨 메세지를 보냈는데 log로 확인합니다.
@@ -114,7 +143,7 @@ class MyClient(discord.Client):
                 # embed로 메세지 출력합니다.
                 await message.reply(embed=imform)
 
-            except Exception as e:
+            except Exception:
                 # 문제가 있으면 디스코드 채팅에 로그를 출력합니다. 만약 에러가 나온다면 꼭 알려주세요.
                 await message.reply("문제가 발생했어요!")
                 await message.reply(traceback.format_exc())
@@ -141,15 +170,14 @@ class MyClient(discord.Client):
                 # 정수가 아닌 문자열을 주면 에러 메세지가 나옵니다. 추가로 에러 로그까지 같이 나옵니다.
                 await message.reply("글자말고 숫자를 넣어주세요!")
                 await message.reply(traceback.format_exc())
-        # 밀리시타 렝킹 스코어를 출력합니다.
-        if message.content.startswith('-밀리시타보더'):
-            global msg, userID
-            userID = message.author.id
-            embed_border = border.get_embed()
-            msg = await message.channel.send(embed=embed_border)
-            reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
-            for emoji in reactions:
-                await msg.add_reaction(emoji)
+
+        # 밀리시타 이벤트 보더를 실시간으로 전송할 체널을 세팅합니다.
+        if message.content.startswith('-보더체널설정'):
+            global channel
+            event_border_channel = int(message.content.replace('-보더체널설정', ''))
+            channel = event_border_channel
+            event_border_channel = client.get_channel(event_border_channel)
+            await event_border_channel.send('이제 이곳에 이벤트 보더를 받아요!')
 
         # 디스코드 내에서 사용할 수 있는 기능을 소개해줍니다.
         if message.content.startswith('-설명'):
