@@ -18,8 +18,8 @@ def get_event_info():
 # 이벤트 보더를 얻습니다.
 def get_border():
     event_id = get_event_info()
-    # eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + str(event_id[0]) + "/rankings/borderPoints"
-    eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + "194" + "/rankings/borderPoints"
+    eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + str(event_id[0]) + "/rankings/borderPoints"
+    # eventRankingUrl = "https://api.matsurihi.me/mltd/v1/events/" + "194" + "/rankings/borderPoints"
     request = urllib.request.Request(eventRankingUrl)
     response = urllib.request.urlopen(request)
     data = response.read()
