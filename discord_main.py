@@ -12,8 +12,10 @@ import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
 import mltd_border as border
 
-TOKEN = os.environ["TOKEN"]
-client = discord.Client()
+# TOKEN = os.environ["TOKEN"]
+TOKEN = "NzAxNzk1NTMzOTkxMTgyMzkw.Xp2sBg.VHa_pKN8ReXxcmGps9frtiGDWBc"
+intents = discord.Intents.default()
+client = discord.Client(intents = intents)
 cool_time = 1800  # 기본값 30분 단위
 msg = ''  # 봇이 가장 마지막으로 보낸 보더 메세지 embed
 reaction_message_id = int  # 봇이 가장 마지막으로 보더 이벤트 전송을 한 메세지 ID
@@ -25,6 +27,7 @@ class MyClient(discord.Client):
     async def on_ready(self):
         # 건설로봇 준비완료
         print('{0}준비 완료!'.format(self.user))
+        await client.change_presence(activity=discord.Game('봇 다시 수정 준비'))
         # 밀리시타 보더 반복 시작
         self.runtime_get_mili_border.start()
 
@@ -87,7 +90,7 @@ class MyClient(discord.Client):
         if message.content.startswith('-복무일'):
             date = army.remain_days()
             date_percent = army.remain_days_percent()
-            await message.channel.send("치비님의 남은 전역일 수는 " + date + "일이며 현재까지 " + date_percent + "%만큼 했어요!")
+            await message.channel.send("치비님이 전역하고 " + date + "일이 지났으며 현재까지 " + date_percent + "%만큼 지나갔어요!")
 
         # 로또 번호를 뽑아줍니다. 낙첨되도 책임은 지지 않습니다...
         if message.content.startswith('-로또'):
@@ -194,5 +197,5 @@ class MyClient(discord.Client):
 # 기본적인 정보들을 로그에 출력해줍니다.
 logging.basicConfig(level=logging.INFO)
 
-client = MyClient()
+client = MyClient(intents = intents)
 client.run(TOKEN)
