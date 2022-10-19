@@ -6,8 +6,6 @@ import time
 def remain_days():
     today = date.today()                    # 현재 시간을 가져옵니다. (YYYY-MM-DD)
     dead_end = datetime.date(2022, 2, 2)    # 축 전역일 (YYYY-MM-DD)
-
-
     object = abs(today - dead_end)          # 남은 일수를 알려줍니다. (DDD Days)
     object_days = object.days               # 남은 일자를 숫자로만 출력시켜줍니다.
     object_day = str(object_days)
