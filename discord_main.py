@@ -12,8 +12,7 @@ import spread_sheet_reader as excel
 import bang_dream_score_caluclator as bangdream
 import mltd_border as border
 
-# TOKEN = os.environ["TOKEN"]
-TOKEN = "NzAxNzk1NTMzOTkxMTgyMzkw.Xp2sBg.VHa_pKN8ReXxcmGps9frtiGDWBc"
+TOKEN = os.environ["TOKEN"]
 intents = discord.Intents.default()
 client = discord.Client(intents = intents)
 cool_time = 1800  # 기본값 30분 단위
